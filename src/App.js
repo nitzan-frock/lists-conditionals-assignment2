@@ -1,16 +1,48 @@
 import React, { Component } from 'react';
 import './App.css';
 
+import Validation from './ValidationComponent/Validation';
+import Char from './CharComponent/Char';
+
 class App extends Component {
   state = {
     lengthOfText: 0,
+    inputText: '',
   };
 
   inputChangeHandler = (event) => {
-    const inputLength = event.target.value.length;
-    this.setState({lengthOfText: inputLength});
+    const inputLength = parseInt(event.target.value.length, 10);
+    this.setState({
+      lengthOfText: inputLength,
+      inputText: event.target.value,
+    });
   }
+
+  removeChar = (inputArray, c) => {
+    console.log(c);
+    const charIndex = inputArray.findIndex((c) => {
+      return c === ;
+    })
+    console.log(charIndex);
+  }
+
   render() {
+    let charBoxes = null;
+    let inputArray = null;
+
+    if (this.state.lengthOfText > 4) {
+      inputArray = this.state.inputText.split('');
+      charBoxes = (
+        <div>
+          {inputArray.map((c, index) => {
+            return <Char 
+              char={c} 
+              click={(event) => this.removeChar(inputArray, c)} />
+          })}
+        </div>
+      );
+    }
+
     return (
       <div className="App">
         <ol>
@@ -23,8 +55,10 @@ class App extends Component {
         </ol>
         <p>Hint: Keep in mind that JavaScript strings are basically arrays!</p>
 
-        <input type="text" onChange={event => this.inputChangeHandler(event)}/>
+        <input type="text" onChange={event => this.inputChangeHandler(event)} value={this.state.inputText}/>
         <p>{this.state.lengthOfText}</p>
+        <Validation textLength={this.state.lengthOfText} />
+        {charBoxes}
       </div>
 
     );
