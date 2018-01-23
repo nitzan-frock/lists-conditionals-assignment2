@@ -18,12 +18,13 @@ class App extends Component {
     });
   }
 
-  removeChar = (inputArray, c) => {
-    console.log(c);
-    const charIndex = inputArray.findIndex((c) => {
-      return c === ;
+  removeChar = (inputArray, c, index) => {
+    inputArray.splice(index, 1);
+    const inputString = inputArray.join('');
+    this.setState({
+      lengthOfText: inputString.length,
+      inputText: inputString
     })
-    console.log(charIndex);
   }
 
   render() {
@@ -37,7 +38,7 @@ class App extends Component {
           {inputArray.map((c, index) => {
             return <Char 
               char={c} 
-              click={(event) => this.removeChar(inputArray, c)} />
+              click={(event) => this.removeChar(inputArray, c, index)} />
           })}
         </div>
       );
