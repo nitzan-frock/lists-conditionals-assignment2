@@ -38,7 +38,8 @@ class App extends Component {
           {inputArray.map((c, index) => {
             return <Char 
               char={c} 
-              click={(event) => this.removeChar(inputArray, c, index)} />
+              key={index}
+              click={() => this.removeChar(inputArray, c, index)} />
           })}
         </div>
       );
@@ -55,7 +56,7 @@ class App extends Component {
           <li>When you click a CharComponent, it should be removed from the entered text.</li>
         </ol>
         <p>Hint: Keep in mind that JavaScript strings are basically arrays!</p>
-
+        <hr />
         <input type="text" onChange={event => this.inputChangeHandler(event)} value={this.state.inputText}/>
         <p>{this.state.lengthOfText}</p>
         <Validation textLength={this.state.lengthOfText} />

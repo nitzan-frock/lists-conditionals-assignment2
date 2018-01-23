@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Validation = (props) => {
+const validation = (props) => {
     let message = 'Text too short.';
 
     if (props.textLength > 4) {
@@ -14,4 +14,4 @@ const Validation = (props) => {
     );
 }
 
-export default Validation;
+export default validation;
